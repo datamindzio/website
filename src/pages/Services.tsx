@@ -14,7 +14,7 @@ export default function Services() {
 
       {/* PAGE HERO */}
       <section className="hero" style={{ paddingBottom: '32px' }}>
-        <div className="container">
+        <div className="container hero-grid">
           <div className="sec-head reveal" style={{ marginBottom: '0' }}>
             <span className="eyebrow">Services</span>
             <h1>From data to decisions, <span className="text-grad">end to end</span>.</h1>
@@ -22,6 +22,12 @@ export default function Services() {
               A single, trusted path from raw data to real-time intelligence — strategy and technology
               under one roof, with no vendor juggling and no gaps.
             </p>
+          </div>
+          <div className="hero-visual hero-visual--blend reveal">
+            <img
+              src="/services-hero.png"
+              alt="Data points converging into a rising point of insight"
+            />
           </div>
         </div>
       </section>
