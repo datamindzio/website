@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ===== DATAMINDZ.IO — dark-tech theme ===== */
 :root{
   --bg:#070B16;
@@ -195,7 +199,7 @@ p{margin:0 0 1rem}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
   padding-top:24px;border-top:1px solid var(--line);color:var(--muted-2);font-size:.85rem}
 
-/* ===== Reveal animation (only hides when JS is active) ===== */
+/* ===== Reveal animation ===== */
 .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .js .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
