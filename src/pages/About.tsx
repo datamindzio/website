@@ -3,6 +3,53 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { useReveal } from '../hooks/useReveal'
 
+type TeamMember = {
+  name: string
+  role: string
+  bio: string
+  photo: string
+  linkedin: string
+}
+
+const team: TeamMember[] = [
+  {
+    name: 'Marcin Górzyński',
+    role: 'Co-Founder & Lead Engineer',
+    bio: 'Engineer with 15 years of experience building real-time data systems — energy trading platforms, blockchain indexers and infrastructure at Polygon, high-performance databases and data pipelines.',
+    photo: '/team/marcin-gorzynski.jpeg',
+    linkedin: 'https://www.linkedin.com/in/marcin-gorzynski/',
+  },
+  {
+    name: 'Magdalena Górzyńska-Łazur',
+    role: 'Co-Founder & Data Analyst',
+    bio: 'Data analyst and storyteller specializing in People & Culture analytics. Turns complex business data into clear, decision-ready dashboards that teams actually use.',
+    photo: '/team/magdalena-gorzynska-lazur.jpeg',
+    linkedin: 'https://www.linkedin.com/in/magdalena-lazur/',
+  },
+]
+
+function TeamCard({ member }: { member: TeamMember }) {
+  return (
+    <div className="card team-card reveal">
+      <img className="team-avatar" src={member.photo} alt={member.name} />
+      <h3>{member.name}</h3>
+      <div className="team-role text-grad">{member.role}</div>
+      <p>{member.bio}</p>
+      <a
+        className="team-link"
+        href={member.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-8.5c0-2.03-.04-4.64-2.83-4.64-2.83 0-3.27 2.21-3.27 4.5V24H8V8z" />
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+  )
+}
+
 export default function About() {
   useReveal()
 
@@ -99,6 +146,21 @@ export default function About() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section className="section" style={{ paddingTop: '0' }}>
+        <div className="container">
+          <div className="sec-head center reveal">
+            <span className="eyebrow">Our team</span>
+            <h2>The people behind DATAMINDZ.</h2>
+          </div>
+          <div className="grid grid-2 team-grid">
+            {team.map((member) => (
+              <TeamCard key={member.name} member={member} />
+            ))}
           </div>
         </div>
       </section>
