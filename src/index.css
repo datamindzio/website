@@ -88,6 +88,7 @@ p{margin:0 0 1rem}
 .nav-links a{padding:.5em .9em;border-radius:8px;color:var(--muted);font-weight:500;font-size:.95rem;transition:.18s}
 .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
 .nav-links a.active{color:var(--text)}
+.nav-links .btn{display:none} /* CTA inside menu is mobile-only; desktop uses .nav-cta */
 .nav-cta{display:flex;align-items:center;gap:10px}
 .nav-toggle{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:8px}
 .nav-toggle svg{width:26px;height:26px}
