@@ -10,7 +10,7 @@ const tab = (active: boolean): CSSProperties => ({
 export default function DashboardTopBar() {
   return (
     <nav className="dash-topbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 32px', borderBottom: '1px solid var(--border-dash)', background: 'var(--panel)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+      <div className="dash-topbar__group" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <Logo cell={6} gap={2} withWordmark={false} />
           <span style={{ fontWeight: 700, fontSize: 16 }}>EnergyAtlas</span>
