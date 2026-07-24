@@ -41,7 +41,7 @@ export default function About() {
         <div className="grid-2" style={{ marginTop: 36, maxWidth: 720 }}>
           {TEAM.map((m) => (
             <div key={m.name}>
-              <img src={m.photo} alt={m.name} style={{ height: 220, width: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 8 }} />
+              <img src={m.photo} alt={m.name} style={{ aspectRatio: '1 / 1', width: '100%', objectFit: 'cover', objectPosition: 'center', borderRadius: 8, display: 'block' }} />
               <div style={{ marginTop: 14, fontWeight: 600, fontSize: 18 }}>{m.name}</div>
               <div className="mono" style={{ marginTop: 4, fontSize: 11, letterSpacing: '.12em', color: 'var(--text-dim)' }}>{m.role}</div>
             </div>
