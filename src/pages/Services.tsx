@@ -1,198 +1,82 @@
-import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { useReveal } from '../hooks/useReveal'
+import Eyebrow from '../components/primitives/Eyebrow'
+import Button from '../components/primitives/Button'
+import Card from '../components/primitives/Card'
+
+const ROWS = [
+  {
+    n: '01 / AUDIT', title: 'Data audit & strategy',
+    body: 'A structured review of your data estate: sources, quality, ownership, and gaps. You get a prioritized roadmap tied to business outcomes — not a shelf report.',
+    bullets: ['Source & quality inventory', 'Value & feasibility scoring', 'Roadmap with quick wins first'],
+  },
+  {
+    n: '02 / PIPELINES', title: 'Data pipelines & platforms',
+    body: 'Ingestion, transformation, and warehousing built from our service templates and connectors — production-grade from day one, monitored and documented.',
+    bullets: ['Batch & streaming ingestion', 'Modeling & warehouse design', 'Observability & data quality checks'],
+  },
+  {
+    n: '03 / INSIGHT', title: 'Dashboards & insights',
+    body: 'Reporting designed around the decisions your teams make — retrospective views, live monitoring, and forecasting where the data supports it.',
+    bullets: ['KPI & operational dashboards', 'Forecasting & scenario views', 'Self-serve analytics enablement'],
+  },
+  {
+    n: '04 / AI · MCP', title: 'AI agents via MCP',
+    body: 'MCP server integrations that expose your data to AI agents — safely, with governed access. From our templates to your production in weeks.',
+    bullets: ['MCP servers over warehouses & APIs', 'Agent workflows & tool design', 'Access control & auditability'],
+  },
+]
+
+const STEPS = [
+  { n: '1', title: 'Scope', body: 'A short discovery to agree on outcomes and constraints.' },
+  { n: '2', title: 'Assemble', body: 'Templates and connectors get a working skeleton up fast.' },
+  { n: '3', title: 'Deliver', body: 'Iterative releases with your team in the loop weekly.' },
+  { n: '4', title: 'Hand over', body: 'Docs, training, and support — you own what we build.' },
+]
 
 export default function Services() {
-  useReveal()
-
   return (
     <>
-      <div className="bg-fx" />
-      <div className="grid-overlay" />
-      <Header />
+      <section className="hero-grid" style={{ padding: '88px var(--gutter) 64px' }}>
+        <Eyebrow>SERVICES</Eyebrow>
+        <h1 style={{ fontSize: 54, margin: '20px 0 0', maxWidth: 820 }}>End to end — or exactly the piece you need.</h1>
+        <p className="lead" style={{ fontSize: 17, maxWidth: 640, margin: '20px 0 0' }}>
+          Four capabilities that compose into one delivery: understand your data, move it reliably, make it visible, and put it in the hands of AI agents.
+        </p>
+      </section>
 
-      {/* PAGE HERO */}
-      <section className="hero" style={{ paddingBottom: '32px' }}>
-        <div className="container hero-grid">
-          <div className="sec-head reveal" style={{ marginBottom: '0' }}>
-            <span className="eyebrow">Services</span>
-            <h1>From data to decisions, <span className="text-grad">end to end</span>.</h1>
-            <p className="lead">
-              A single, trusted path from raw data to real-time intelligence — strategy and technology
-              under one roof, with no vendor juggling and no gaps.
-            </p>
+      <section className="section" style={{ padding: '0 var(--gutter)' }}>
+        {ROWS.map((r) => (
+          <div key={r.n} style={{ display: 'grid', gridTemplateColumns: '220px 1fr 1fr', gap: 32, padding: '40px 0', borderBottom: '1px solid var(--border)' }}>
+            <div className="mono" style={{ fontSize: 13, color: 'var(--accent)', letterSpacing: '.08em' }}>{r.n}</div>
+            <div>
+              <h2 style={{ fontSize: 22 }}>{r.title}</h2>
+              <p className="lead" style={{ fontSize: 14.5, margin: '10px 0 0' }}>{r.body}</p>
+            </div>
+            <ul className="arrow-list">
+              {r.bullets.map((b) => <li key={b}>{b}</li>)}
+            </ul>
           </div>
-          <div className="hero-visual hero-visual--blend reveal">
-            <img
-              src="/services-hero.png"
-              alt="Data points converging into a rising point of insight"
-            />
-          </div>
+        ))}
+      </section>
+
+      <section className="section" style={{ padding: '80px var(--gutter)' }}>
+        <Eyebrow>HOW WE WORK</Eyebrow>
+        <div className="grid-4" style={{ marginTop: 28 }}>
+          {STEPS.map((s) => (
+            <Card key={s.n}>
+              <div style={{ padding: '26px 28px' }}>
+                <div className="mono" style={{ fontSize: 22, color: 'var(--text-dimmest)' }}>{s.n}</div>
+                <div style={{ marginTop: 12, fontWeight: 600, fontSize: 17 }}>{s.title}</div>
+                <div style={{ marginTop: 8, fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>{s.body}</div>
+              </div>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* SERVICES DETAIL */}
-      <section className="section--tight">
-        <div className="container">
-          <div className="grid grid-2">
-            <div className="card reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M9 11l3 3 8-8M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0" />
-                </svg>
-              </div>
-              <h3>Data Audits</h3>
-              <p>
-                A thorough assessment of your data infrastructure — quality, governance frameworks and
-                overall maturity — so you know exactly where you stand before you invest.
-              </p>
-            </div>
-            <div className="card reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" />
-                </svg>
-              </div>
-              <h3>Strategic Data Advice</h3>
-              <p>
-                Expert guidance on data strategy, the right technologies to adopt, and the data literacy
-                your team needs to build a genuinely data-fluent culture.
-              </p>
-            </div>
-            <div className="card reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M6 3v12M18 9v12M6 15a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3M6 3a3 3 0 0 1 3 3" />
-                </svg>
-              </div>
-              <h3>Data Integration</h3>
-              <p>
-                Connect disparate sources — the ones trapped in isolated systems — into one unified,
-                accessible framework. No more silos, no more conflicting versions of the truth.
-              </p>
-            </div>
-            <div className="card reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M4 7h16M4 12h16M4 17h16M8 4v16" />
-                </svg>
-              </div>
-              <h3>Data Pipelining &amp; Processing</h3>
-              <p>
-                Resilient, scalable pipelines that move, transform and prepare data efficiently —
-                including real-time and micro-batch frameworks for low-latency use cases.
-              </p>
-            </div>
-            <div className="card reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M4 19V5M4 19h16M8 16V9M12 16V6M16 16v-4M20 16v-8" />
-                </svg>
-              </div>
-              <h3>Data Analysis &amp; Storytelling</h3>
-              <p>
-                We extract the patterns that matter and translate them into clear, compelling visual
-                narratives your stakeholders can act on immediately.
-              </p>
-            </div>
-            <div className="card reveal" style={{ borderColor: 'var(--line-strong)' }}>
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <ellipse cx="12" cy="6" rx="8" ry="3" />
-                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
-                </svg>
-              </div>
-              <h3>
-                DATAMINDZ Storage{' '}
-                <span style={{ color: 'var(--cyan)', fontSize: '.7rem' }}>SaaS</span>
-              </h3>
-              <p>
-                Our proprietary, S3-compatible object storage — the secure, scalable foundation under
-                every pipeline and dashboard we build.{' '}
-                <Link to="/storage" style={{ color: 'var(--cyan)' }}>See the product →</Link>
-              </p>
-            </div>
-          </div>
-        </div>
+      <section className="section cta-band" style={{ padding: '72px var(--gutter)' }}>
+        <h2 style={{ fontSize: 32 }}>Not sure where to start? Start with the audit.</h2>
+        <Button to="/contact">Get in touch</Button>
       </section>
-
-      {/* CHALLENGES TABLE */}
-      <section className="section">
-        <div className="container">
-          <div className="sec-head reveal">
-            <span className="eyebrow">Challenges we solve</span>
-            <h2>Your pain points, mapped to our solutions.</h2>
-          </div>
-          <div className="reveal" style={{ overflowX: 'auto' }}>
-            <table className="tbl">
-              <thead>
-                <tr>
-                  <th>Your challenge</th>
-                  <th>What it costs you</th>
-                  <th>How we fix it</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Poor data quality</td>
-                  <td>Wrong insights, bad decisions</td>
-                  <td>Audits + cleansing, standardization, validation</td>
-                </tr>
-                <tr>
-                  <td>Data silos</td>
-                  <td>Missed opportunities, no single view</td>
-                  <td>Integration, unified pipelines, governance</td>
-                </tr>
-                <tr>
-                  <td>Scale &amp; volume</td>
-                  <td>Slow processing, overwhelmed systems</td>
-                  <td>Scalable cloud pipelines + object storage</td>
-                </tr>
-                <tr>
-                  <td>No in-house expertise</td>
-                  <td>Stalled projects, locked-up data</td>
-                  <td>Managed services + training + self-serve tools</td>
-                </tr>
-                <tr>
-                  <td>Real-time latency</td>
-                  <td>Outdated, low-value insight</td>
-                  <td>Real-time / micro-batch pipelines</td>
-                </tr>
-                <tr>
-                  <td>Hidden costs</td>
-                  <td>Budget strain</td>
-                  <td>Audits + cost-optimized pipeline design</td>
-                </tr>
-                <tr>
-                  <td>Security &amp; compliance</td>
-                  <td>Regulatory risk</td>
-                  <td>GDPR-ready governance, encryption, EU residency</td>
-                </tr>
-                <tr>
-                  <td>Weak visualization</td>
-                  <td>Misleading conclusions</td>
-                  <td>Expert storytelling + clear dashboards</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" style={{ paddingTop: '0' }}>
-        <div className="container">
-          <div className="cta-banner reveal">
-            <h2>Not sure where to start?</h2>
-            <p className="lead">
-              A free data audit shows you exactly where the gaps are — and what they're costing you.
-            </p>
-            <Link to="/contact" className="btn btn--primary">Book a free data audit</Link>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </>
   )
 }
