@@ -12,10 +12,12 @@ const LINKS = [
 
 export default function MobileMenu({ onClose }: { onClose: () => void }) {
   const { pathname } = useLocation()
-  const first = useRef(true)
+  const prevPathname = useRef(pathname)
   useEffect(() => {
-    if (first.current) { first.current = false; return }
-    onClose()
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname
+      onClose()
+    }
   }, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="mobile-menu">

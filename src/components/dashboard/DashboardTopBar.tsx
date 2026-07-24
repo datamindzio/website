@@ -9,14 +9,14 @@ const tab = (active: boolean): CSSProperties => ({
 
 export default function DashboardTopBar() {
   return (
-    <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 32px', borderBottom: '1px solid var(--border-dash)', background: 'var(--panel)' }}>
+    <nav className="dash-topbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 32px', borderBottom: '1px solid var(--border-dash)', background: 'var(--panel)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <Logo cell={6} gap={2} withWordmark={false} />
           <span style={{ fontWeight: 700, fontSize: 16 }}>EnergyAtlas</span>
           <span className="mono" style={{ fontSize: 10, color: 'var(--text-dimmer)', border: '1px solid var(--border-input)', borderRadius: 3, padding: '2px 6px' }}>BY DATAMINDZ</span>
         </div>
-        <div style={{ display: 'flex', gap: 4 }}>
+        <div className="dash-topbar__tabs" style={{ display: 'flex', gap: 4 }}>
           <span style={tab(true)}>Overview</span>
           <span style={tab(false)}>Assets</span>
           <span style={tab(false)}>Forecast</span>

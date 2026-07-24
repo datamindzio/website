@@ -194,6 +194,10 @@ button{font-family:inherit}
   .hamburger{display:inline-flex}
   .services-strip,.strip-3,.grid-2,.grid-3,.grid-4,
   .dash-kpis,.dash-2x1{grid-template-columns:1fr}
+  .assets-table__scroll{overflow-x:auto}
+  .assets-table__row{min-width:560px}
+  .dash-topbar{flex-wrap:wrap;row-gap:10px}
+  .dash-topbar__tabs{overflow-x:auto;max-width:100%}
   .service-cell{border-right:0;border-bottom:1px solid var(--border)}
   .strip-3 > *{border-right:0;border-bottom:1px solid var(--border)}
   .split{grid-template-columns:1fr;min-height:0}
