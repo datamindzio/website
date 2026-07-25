@@ -1,54 +1,38 @@
 # DATAMINDZ.IO — Website
 
-Marketing website for **DATAMINDZ.IO** — end-to-end data consulting and an S3-compatible, EU-native object storage SaaS (**DATAMINDZ Storage**).
+Marketing website for **DATAMINDZ.IO** — end-to-end data consulting (audits, pipelines, dashboards, AI agents via MCP) plus the **EnergyAtlas** demo dashboard.
 
-Static, dependency-free, multi-page site. No build step.
+Built with **React 18 + Vite 6 + Tailwind 3** (preflight off) + **react-router-dom 6**, TypeScript. Design system: "Signal" — oklch tokens in `src/index.css`, self-hosted Space Grotesk + IBM Plex Mono via `@fontsource` (no Google Fonts CDN).
 
-## Pages
+## Routes
 
-| Page | File |
-|------|------|
-| Home | `index.html` |
-| Services | `services.html` |
-| Storage (SaaS product) | `storage.html` |
-| About | `about.html` |
-| Contact | `contact.html` |
+| Path | Page | Notes |
+|------|------|-------|
+| `/` | Home | |
+| `/services` | Services | |
+| `/projects` | Projects | featured EnergyAtlas demo |
+| `/about` | About | co-founder team |
+| `/contact` | Contact | client-side validate → `mailto:contact@datamindz.io` |
+| `/energyatlas` | EnergyAtlas | in-site dashboard mock (standalone chrome) |
+| `*` | NotFound | catch-all 404 inside the marketing shell (no redirect) |
 
-## Structure
-
-```
-.
-├── index.html
-├── services.html
-├── storage.html
-├── about.html
-├── contact.html
-├── css/
-│   └── styles.css
-└── js/
-    └── main.js
-```
-
-## Run locally
-
-Open `index.html` in any browser, or serve the folder:
+## Develop
 
 ```bash
-python3 -m http.server 8000
-# then visit http://localhost:8000
+npm install
+npm run dev      # vite dev server
+npm run build    # tsc + vite build
+npm run test     # vitest (contact validation/mailto unit tests)
 ```
 
-## Deploy
+## Assets
 
-This is a static site — host it anywhere:
-
-- **GitHub Pages** — Settings → Pages → deploy from the default branch (root).
-- **Netlify / Vercel** — drag-and-drop the folder, or connect this repo.
+Runtime assets live in `public/` (favicons, `logo-png/`, `energyatlas-dashboard.png`, `energyatlas-map.html`, `team/` photos). Design-reference `.dc.html` specs are vendored (git-excluded) under `docs/superpowers/design-handoff/`.
 
 ## Notes
 
-- The contact form (`contact.html`) is front-end only; wire it to a form backend (e.g. Formspree) or your CRM to receive submissions.
-- Design: dark-tech theme, custom inline SVG graphics, system + Inter typography, responsive with a mobile nav.
+- The contact form is client-side only: it validates then opens the visitor's mail client via `mailto:`. No backend.
+- The EnergyAtlas map embeds a self-contained Leaflet + OpenStreetMap page via iframe; the "© OpenStreetMap contributors" attribution is a license requirement and must stay visible.
 
 ## License
 

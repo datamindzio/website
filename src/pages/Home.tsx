@@ -1,230 +1,100 @@
 import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import { useReveal } from '../hooks/useReveal'
+import Eyebrow from '../components/primitives/Eyebrow'
+import Button from '../components/primitives/Button'
+import Card from '../components/primitives/Card'
+import BrowserFrame from '../components/primitives/BrowserFrame'
+import { ENERGYATLAS_URL } from '../lib/constants'
+
+const STRIP = [
+  { n: '01 / AUDIT', title: 'Data audit & strategy', body: "Map what you have, what it's worth, and what's missing.", accent: false },
+  { n: '02 / PIPELINES', title: 'Data pipelines', body: 'Reliable ingestion and modeling, from source to warehouse.', accent: false },
+  { n: '03 / INSIGHT', title: 'Dashboards & insights', body: 'Decision-grade reporting your teams actually use.', accent: false },
+  { n: '04 / AI · MCP', title: 'AI agents via MCP', body: 'Expose your data to AI agents with MCP server integrations.', accent: true },
+]
+
+const TOOLKIT = [
+  { t: 'MCP SERVER TEMPLATES', b: 'Stand up an agent-ready data interface over your warehouse or APIs in days.' },
+  { t: 'SERVICE TEMPLATES', b: 'Battle-tested scaffolds for ingestion, transformation, and serving layers.' },
+  { t: 'CONNECTORS', b: 'Ready-made integrations for common sources, warehouses, and BI tools.' },
+]
 
 export default function Home() {
-  useReveal()
-
   return (
     <>
-      <div className="bg-fx" />
-      <div className="grid-overlay" />
-      <Header />
-
-      {/* HERO */}
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="reveal">
-            <span className="eyebrow">Data consulting &amp; EU-native cloud storage</span>
-            <h1>Turn raw data into your <span className="text-grad">strongest strategic asset</span>.</h1>
-            <p className="lead">
-              Fix data quality, break down silos and unlock real-time insight — backed by our own
-              S3-compatible object storage, built and hosted in the EU.
-            </p>
-            <div className="hero-cta">
-              <Link to="/contact" className="btn btn--primary">Book a free data audit</Link>
-              <Link to="/storage" className="btn btn--ghost">Explore DATAMINDZ Storage →</Link>
-            </div>
-            <div className="hero-stats">
-              <div>
-                <div className="num text-grad">$952M</div>
-                <div className="lbl">Polish data market by 2032</div>
-              </div>
-              <div>
-                <div className="num text-grad">15.87%</div>
-                <div className="lbl">CAGR, 2025–2032</div>
-              </div>
-              <div>
-                <div className="num text-grad">EU</div>
-                <div className="lbl">Data residency by default</div>
-              </div>
-            </div>
-          </div>
-          <div className="hero-visual reveal">
-            <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="hg" cx="60%" cy="45%" r="70%">
-                  <stop offset="0%" stopColor="#33C6E0" stopOpacity=".9" />
-                  <stop offset="100%" stopColor="#4F8DFF" stopOpacity="0" />
-                </radialGradient>
-                <linearGradient id="hln" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#33C6E0" />
-                  <stop offset="100%" stopColor="#7A5BFF" />
-                </linearGradient>
-              </defs>
-              <circle cx="240" cy="180" r="150" fill="url(#hg)" />
-              <g stroke="url(#hln)" strokeWidth="1" opacity=".55">
-                <line x1="240" y1="180" x2="90" y2="70" />
-                <line x1="240" y1="180" x2="60" y2="200" />
-                <line x1="240" y1="180" x2="120" y2="320" />
-                <line x1="240" y1="180" x2="330" y2="90" />
-                <line x1="240" y1="180" x2="360" y2="250" />
-                <line x1="240" y1="180" x2="250" y2="350" />
-                <line x1="90" y1="70" x2="60" y2="200" />
-                <line x1="330" y1="90" x2="360" y2="250" />
-                <line x1="120" y1="320" x2="250" y2="350" />
-                <line x1="60" y1="200" x2="120" y2="320" />
-              </g>
-              <g fill="#9FE9F6">
-                <circle cx="240" cy="180" r="9" fill="url(#hln)" />
-                <circle cx="90" cy="70" r="4" />
-                <circle cx="60" cy="200" r="3.5" />
-                <circle cx="120" cy="320" r="5" />
-                <circle cx="330" cy="90" r="4" />
-                <circle cx="360" cy="250" r="3.5" />
-                <circle cx="250" cy="350" r="4.5" />
-                <circle cx="180" cy="130" r="2.5" />
-                <circle cx="300" cy="220" r="2.5" />
-              </g>
-            </svg>
-          </div>
+      {/* Hero */}
+      <section className="hero-grid" style={{ padding: '104px var(--gutter) 80px' }}>
+        <Eyebrow>DATA CONSULTING · PIPELINES · AI AGENTS</Eyebrow>
+        <h1 style={{ fontSize: 68, lineHeight: 1.05, letterSpacing: '-0.03em', maxWidth: 860, margin: '22px 0 0' }}>
+          From raw data to decisions your business can act on.
+        </h1>
+        <p className="lead" style={{ fontSize: 19, maxWidth: 620, margin: '28px 0 0' }}>
+          DataMindz delivers end-to-end data solutions — audits, pipelines, dashboards, and AI-agent integrations via MCP — built fast on proven templates and connectors.
+        </p>
+        <div style={{ display: 'flex', gap: 16, marginTop: 44, flexWrap: 'wrap' }}>
+          <Button href={ENERGYATLAS_URL} external>Explore EnergyAtlas</Button>
+          <Button variant="secondary" to="/services">Our services</Button>
         </div>
       </section>
 
-      {/* VALUE STRIP */}
-      <section className="section--tight">
-        <div className="container">
-          <div className="value-strip reveal">
-            <span className="chip"><b>End-to-end</b> · audits to dashboards</span>
-            <span className="chip"><b>Real-time</b> · low-latency pipelines</span>
-            <span className="chip"><b>EU-native storage</b> · GDPR-ready</span>
-            <span className="chip"><b>One partner</b> · no vendor juggling</span>
+      {/* Services strip */}
+      <section className="services-strip" style={{ borderTop: '1px solid var(--border)' }}>
+        {STRIP.map((s) => (
+          <Link key={s.n} to="/services" className="service-cell">
+            <div className="eyebrow" style={{ color: s.accent ? 'var(--accent)' : 'var(--text-dim)', letterSpacing: '.14em' }}>{s.n}</div>
+            <div style={{ marginTop: 12, fontWeight: 600, fontSize: 17 }}>{s.title}</div>
+            <div style={{ marginTop: 8, fontSize: 13.5, lineHeight: 1.55, color: 'var(--text-body3)' }}>{s.body}</div>
+          </Link>
+        ))}
+      </section>
+
+      {/* EnergyAtlas feature */}
+      <section className="section" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 56, alignItems: 'center', padding: '80px var(--gutter)' }}>
+        <div>
+          <Eyebrow>FEATURED PROJECT</Eyebrow>
+          <h2 style={{ fontSize: 38, margin: '16px 0 0' }}>EnergyAtlas</h2>
+          <p className="lead" style={{ fontSize: 15.5, lineHeight: 1.65, margin: '16px 0 0' }}>
+            Aggregated energy production across PV, wind, and battery assets — retrospective analysis and forecasting — with an MCP server exposing the full dataset to AI agents.
+          </p>
+          <div style={{ display: 'flex', gap: 20, marginTop: 26, alignItems: 'center', flexWrap: 'wrap' }}>
+            <a className="mono" style={{ fontSize: 13, color: 'var(--accent)' }} href={ENERGYATLAS_URL} target="_blank" rel="noopener">energyatlas.datamindz.io →</a>
+            <Link to="/energyatlas" style={{ fontSize: 13.5, color: 'var(--text-nav)' }}>See it live →</Link>
+            <Link to="/projects" style={{ fontSize: 13.5, color: 'var(--text-nav)' }}>Project details</Link>
           </div>
+        </div>
+        <BrowserFrame to="/energyatlas">
+          <img src="/energyatlas-dashboard.png" alt="EnergyAtlas dashboard" style={{ height: 300 }} />
+        </BrowserFrame>
+      </section>
+
+      {/* Why we ship fast */}
+      <section className="section" style={{ padding: '80px var(--gutter)' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+          <h2 style={{ fontSize: 32 }}>Why we ship fast</h2>
+          <span className="eyebrow eyebrow--dim">TOOLKIT / ACCELERATORS</span>
+        </div>
+        <p className="lead" style={{ fontSize: 15.5, margin: '14px 0 0', maxWidth: 640 }}>
+          We don't start from zero. A library of production-tested building blocks gets your solution to first value in weeks, not quarters.
+        </p>
+        <div className="grid-3" style={{ marginTop: 36 }}>
+          {TOOLKIT.map((c) => (
+            <Card key={c.t}>
+              <div style={{ padding: '26px 28px' }}>
+                <div className="eyebrow" style={{ letterSpacing: '.12em' }}>{c.t}</div>
+                <div style={{ marginTop: 10, fontSize: 14, lineHeight: 1.6, color: 'var(--text-muted)' }}>{c.b}</div>
+              </div>
+            </Card>
+          ))}
         </div>
       </section>
 
-      {/* SERVICES PREVIEW */}
-      <section className="section">
-        <div className="container">
-          <div className="sec-head reveal">
-            <span className="eyebrow">What we do</span>
-            <h2>One trusted partner, from raw data to real-time intelligence.</h2>
-            <p className="lead">
-              Most teams don't have a tooling problem — they have a fragmentation problem. We close
-              the gap between data and decisions.
-            </p>
-          </div>
-          <div className="grid grid-3">
-            <Link to="/services" className="card card--link reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M9 11l3 3 8-8M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0" />
-                </svg>
-              </div>
-              <h3>Data Audits</h3>
-              <p>Assess data quality, governance and maturity before you invest.</p>
-            </Link>
-            <Link to="/services" className="card card--link reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3" />
-                </svg>
-              </div>
-              <h3>Strategic Advice</h3>
-              <p>Data strategy, the right tech, and a genuinely data-fluent culture.</p>
-            </Link>
-            <Link to="/services" className="card card--link reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M6 3v12M18 9v12M6 15a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3M6 3a3 3 0 0 1 3 3" />
-                </svg>
-              </div>
-              <h3>Data Integration</h3>
-              <p>Unify disparate sources and eliminate silos for one source of truth.</p>
-            </Link>
-            <Link to="/services" className="card card--link reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M4 7h16M4 12h16M4 17h16M8 4v16" />
-                </svg>
-              </div>
-              <h3>Pipelining &amp; Processing</h3>
-              <p>Scalable, resilient, real-time pipelines built for low latency.</p>
-            </Link>
-            <Link to="/services" className="card card--link reveal">
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <path d="M4 19V5M4 19h16M8 16V9M12 16V6M16 16v-4M20 16v-8" />
-                </svg>
-              </div>
-              <h3>Analysis &amp; Storytelling</h3>
-              <p>Clear, decision-ready visual narratives your stakeholders can act on.</p>
-            </Link>
-            <Link to="/storage" className="card card--link reveal" style={{ borderColor: 'var(--line-strong)' }}>
-              <div className="ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                  <ellipse cx="12" cy="6" rx="8" ry="3" />
-                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
-                </svg>
-              </div>
-              <h3>
-                DATAMINDZ Storage{' '}
-                <span style={{ color: 'var(--cyan)', fontSize: '.7rem', verticalAlign: 'middle' }}>SaaS</span>
-              </h3>
-              <p>S3-compatible object storage — the secure EU foundation under it all.</p>
-            </Link>
-          </div>
+      {/* CTA band (left text / right button per Home.dc.html) */}
+      <section className="section" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'center', padding: '72px var(--gutter)' }}>
+        <div>
+          <h2 style={{ fontSize: 34 }}>Have data? Let's make it work.</h2>
+          <p className="lead" style={{ fontSize: 15.5, margin: '12px 0 0' }}>Tell us where you are — we'll map the fastest route to value.</p>
         </div>
+        <Button to="/contact">Get in touch</Button>
       </section>
-
-      {/* WHY NOW */}
-      <section className="section">
-        <div className="container">
-          <div className="panel split reveal">
-            <div>
-              <span className="eyebrow">Why now</span>
-              <h2>The gap is the opportunity.</h2>
-              <p className="muted">
-                Poland's data design &amp; consulting segment is the fastest-growing slice of a market
-                projected to reach <b style={{ color: 'var(--text)' }}>USD 952M by 2032</b>. Yet AI
-                adoption (5.9%) and data analytics (19.3%) sit far below EU averages — and national
-                programs are channeling an estimated <b style={{ color: 'var(--text)' }}>EUR 12.4B</b>{' '}
-                into SME digitalization. We close that gap.
-              </p>
-            </div>
-            <div className="grid" style={{ gap: '14px' }}>
-              <div className="feature">
-                <span className="tick">✓</span>
-                <div>
-                  <h4>SMEs</h4>
-                  <p>Simplify complex data, prove ROI fast — no in-house data team required.</p>
-                </div>
-              </div>
-              <div className="feature">
-                <span className="tick">✓</span>
-                <div>
-                  <h4>Large enterprises</h4>
-                  <p>Untangle legacy systems and silos with scalable, compliant, secure solutions.</p>
-                </div>
-              </div>
-              <div className="feature">
-                <span className="tick">✓</span>
-                <div>
-                  <h4>Compliance built in</h4>
-                  <p>GDPR-ready governance and EU data residency from day one.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section">
-        <div className="container">
-          <div className="cta-banner reveal">
-            <h2>Ready to make your data work?</h2>
-            <p className="lead">Book a free data audit and see exactly where you stand — no commitment.</p>
-            <div className="hero-cta" style={{ justifyContent: 'center', margin: '0' }}>
-              <Link to="/contact" className="btn btn--primary">Book a free data audit</Link>
-              <Link to="/storage" className="btn btn--ghost">Start a Storage trial →</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
     </>
   )
 }

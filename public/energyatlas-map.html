@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+html,body{margin:0;height:100%;background:oklch(0.17 0.02 255)}
+#map{height:100%;background:oklch(0.17 0.02 255)}
+#map .leaflet-tile-pane{filter:invert(1) hue-rotate(190deg) brightness(0.68) contrast(1.05) saturate(0.5)}
+.leaflet-container{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.leaflet-popup-content-wrapper{background:oklch(0.2 0.02 255);color:oklch(0.95 0.005 250);border:1px solid oklch(0.32 0.02 255);border-radius:6px;font-size:12px}
+.leaflet-popup-tip{background:oklch(0.2 0.02 255)}
+.leaflet-popup-content b{font-family:'Space Grotesk',sans-serif;font-size:13px}
+.legend{background:oklch(0.18 0.02 255 / .92);border:1px solid oklch(0.32 0.02 255);border-radius:6px;padding:10px 14px;color:oklch(0.85 0.01 250);font-size:10.5px;letter-spacing:.08em;line-height:2}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px}
+.leaflet-control-attribution{background:oklch(0.18 0.02 255 / .8);color:oklch(0.6 0.01 250)}
+.leaflet-control-attribution a{color:oklch(0.75 0.08 190)}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const map = L.map('map', { zoomControl: true, scrollWheelZoom: false }).setView([53.6, 9.6], 7);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
+const colors = { PV: 'oklch(0.85 0.15 190)', WIND: 'oklch(0.7 0.1 250)', BATTERY: 'oklch(0.8 0.12 80)' };
+const assets = [
+  { n: 'Solarpark Nordfeld', t: 'PV', c: '22.4 MWp', ll: [54.32, 9.1] },
+  { n: 'Rooftop Portfolio City-South', t: 'PV', c: '8.6 MWp', ll: [53.52, 10.02] },
+  { n: 'Solarfeld Heideland', t: 'PV', c: '14.1 MWp', ll: [53.1, 10.6] },
+  { n: 'PV Cluster Westmoor', t: 'PV', c: '11.3 MWp', ll: [53.3, 8.1] },
+  { n: 'Coastal Wind Cluster A', t: 'WIND', c: '18.0 MW', ll: [54.5, 8.6] },
+  { n: 'Turbine Site Hochland 3', t: 'WIND', c: '6.0 MW', ll: [53.9, 10.9] },
+  { n: 'Windpark Ostküste', t: 'WIND', c: '12.5 MW', ll: [54.1, 11.4] },
+  { n: 'BESS Hub Ost', t: 'BATTERY', c: '12.0 MWh', ll: [53.45, 11.0] },
+  { n: 'BESS City-Nord', t: 'BATTERY', c: '6.5 MWh', ll: [53.68, 9.85] }
+];
+assets.forEach(a => {
+  L.circleMarker(a.ll, { radius: 9, color: colors[a.t], weight: 2, fillColor: colors[a.t], fillOpacity: 0.35 })
+    .addTo(map)
+    .bindPopup('<b>' + a.n + '</b><br>' + a.t + ' · ' + a.c);
+});
+const legend = L.control({ position: 'topright' });
+legend.onAdd = () => {
+  const d = L.DomUtil.create('div', 'legend');
+  d.innerHTML = '<i style="background:' + colors.PV + '"></i>PV<br><i style="background:' + colors.WIND + '"></i>WIND<br><i style="background:' + colors.BATTERY + '"></i>BATTERY';
+  return d;
+};
+legend.addTo(map);
+</script>
+</body>
+</html>
